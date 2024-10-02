@@ -8,9 +8,8 @@ services:
       context: .
     ports:
       - "8000:8000"
-    environment: 
-      - AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;
-      - STORAGE_CONTAINER=test-container
+    env_file:
+      - .env
     networks:
       - default
 
