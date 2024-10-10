@@ -4,15 +4,18 @@ import matplotlib.pyplot as plt
 import os
 import requests
 
+if os.environ.get('BACKEND_URL') is None:   
+    os.environ['BACKEND_URL'] = 'http://backend:8000'
+
 def display_data(option: str):
 
     if option == "Latest worldwide":
-        response = requests.get(f"http://backend:8000/get-df?year=0")
+        response = requests.get(f"{os.environ['BACKEND_URL']}/get-df?year=0")
         df = pd.read_json(response.json())
         st.write(df)
     else:
         year = option[7:]
-        response = requests.get(f"http://backend:8000/get-df?year={year}")
+        response = requests.get(f"{os.environ['BACKEND_URL']}/get-df?year={year}")
         df = pd.read_json(response.json())
         df.sort_index(axis = 0, inplace=True)
                 

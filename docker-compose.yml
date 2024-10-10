@@ -21,19 +21,9 @@ services:
       - "8501:8501"
     networks:
       - default
+    env_file:
+      - .env
     
-
-  azurite:
-    image: mcr.microsoft.com/azure-storage/azurite
-    hostname: azurite
-    ports: 
-      - 10000:10000 
-      - 10001:10001 
-      - 10002:10002
-    networks:
-      - default
-    volumes:
-      - azurite:/data
 
 networks:
   default:
